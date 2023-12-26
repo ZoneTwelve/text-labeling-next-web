@@ -4,14 +4,8 @@ import { Accordion, AccordionItem, Button, Link } from "@nextui-org/react";
 
 export default function TaskPage() {
     return (
-        <div>
-            <div 
-                style={{ 
-                    display: 'flex',
-                    justifyContent: 'space-between', 
-                    marginTop: '20px' 
-                }}
-            >
+        <div className="mx-auto w-full justify-center">
+            <div className="flex mt-5 mb-10 justify-between">
                 <h1>任務列表</h1>
                 <Button
                     color="primary"

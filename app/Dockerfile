@@ -1,6 +1,6 @@
 # Stage 1: Building the code
 FROM node:20.10.0 AS builder
-
+ARG DATABASE_URL
 WORKDIR /app
 
 # Copy the package.json and package-lock.json (or yarn.lock)
@@ -11,6 +11,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install yarn
 RUN yarn install
+RUN echo "DB: $DATABASE_URL" && sleep 10
 # If you're using yarn, uncomment the next line and delete the one above
 # RUN yarn install
 
@@ -28,7 +29,8 @@ FROM node:20.10.0
 
 WORKDIR /app
 COPY --from=builder /app ./
-
+#RUN npx prisma migrate dev
+#RUN npx prisma migrate deploy
 # Copy built assets from the builder stage
 #COPY --from=builder /app/next.config.js ./
 #COPY --from=builder /app/public ./public
@@ -41,6 +43,5 @@ EXPOSE 3000
 # Define the command to run your app
 #CMD ["npm", "start"]
 # If you're using yarn, uncomment the next line and delete the one above
-#CMD ["yarn", "dev"]
-CMD ["sh", "-c", "npx prisma migrate deploy && yarn dev"]
-
+CMD ["yarn", "dev"]
+#CMD ["sh", "-c", "npx prisma migrate deploy && yarn dev"]

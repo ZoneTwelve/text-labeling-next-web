@@ -29,14 +29,24 @@ export default function TaskList() {
 
     return (
         <>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'end',
-                    alignItems: 'center',
-                }}
-                className="w-full"
-            >
+            <div>
+                
+                {tasks.slice((page - 1) * itemPerPage, page * itemPerPage).map((task) => (
+                    <div className="flex p-4 mx-auto my-2 border rounded items-center min-h-16 h-auto">
+                        <div className="flex-auto p-2 w-full">
+                            <div className="w-max">
+                                <h3>{task.name}</h3>
+                            </div>
+                            <div className="w-full m-2 text-gray-600">
+                                {task.fullDescription}
+                            </div>
+                        </div>
+                        <div className="mr-4 flex flex-auto w-16 h-10 items-center justify-center rounded border">
+                            <Link href={`/task/${task.id}`}>開始</Link>
+                        </div>
+                    </div>
+                ))}
+                <div className="flex my-10 justify-center align-center w-full">
 
                 <Pagination
                     showControls
@@ -45,20 +55,8 @@ export default function TaskList() {
                     onChange={(page) => setPage(page)}
 
                 />
+                </div>
             </div>
-            <Accordion>
-                {tasks.slice((page - 1) * itemPerPage, page * itemPerPage).map((task) => (
-                    <AccordionItem key={task.id} title={task.name} subtitle={task.shortDescription}>
-                        {task.fullDescription}
-                        <div className="flex justify-end space-x-3"
-                        >
-                        <Link href={`/task/${task.id}`}>開始</Link>
-                        </div>
-                        
-                    </AccordionItem>
-                ))}
-            </Accordion>
-
         </>
     )
 }

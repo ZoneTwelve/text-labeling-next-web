@@ -56,7 +56,7 @@ export default function TaskPage(
                     variant="solid"
                     href={`/task/${taskID}/answer`}
                     as={Link}
-                >由此開始</Button>
+                >從頭作答</Button>
                 <Pagination
                     showControls
                     total={Math.ceil(promptsCount / promptsPerPage)}
@@ -83,15 +83,15 @@ export default function TaskPage(
                                 {session ?
                                     <Button
                                         size="sm"
-                                        color={prompt.submissions.length > 0 ? 'success' : 'primary'}
+                                        color={prompt.submissions?.length > 0 ? 'success' : 'primary'}
                                         variant="light"
-                                        disabled={prompt.submissions.length > 0}
+                                        disabled={prompt.submissions?.length > 0}
                                         // href={`/task/${taskID}/${prompt.id}`}
-                                        href={prompt.submissions.length > 0 ? `#` : `/task/${taskID}/${prompt.id}`}
+                                        href={prompt.submissions?.length > 0 ? `#` : `/task/${taskID}/${prompt.id}`}
                                         as={Link}
                                     >
                                         {
-                                            prompt.submissions.length > 0 ?
+                                            prompt.submissions?.length > 0 ?
                                                 '已完成'
                                                 : '開始'
 

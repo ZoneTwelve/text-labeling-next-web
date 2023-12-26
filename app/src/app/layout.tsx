@@ -23,7 +23,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <main className="text-foreground bg-background">
             <NavBar />
-              <div className="container mx-auto p-4 flex flex-col space-y-4">
+              <div className="container max-w-4xl mx-auto p-4 flex flex-col space-y-4">
                 <MyBreadcrumbs />
                 {children}
               </div>
